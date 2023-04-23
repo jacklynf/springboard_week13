@@ -1,0 +1,30 @@
+1. We are passing by reference because we want to operate directly on the variables
+   rather than just on a copy of them. More specifically, for counter, we want to
+   count the number of times the counter increments total for all 3 threads. And
+   for counter_mutex, if we only pass a copy of the lock then it defeats the purpose
+   of using it, since each thread will have its own lock so they will still be able
+   to access all of the code.
+
+2. Since we haven't implemented the lock, we can probably expect this to take ~1
+   second (assuming the threads are able to run mostly in parallel).  
+
+3. Due to the lock not being implemented, I have a hunch we won't pass the test.
+   I suspect we will see race conditions which will cause simultaneous writing to the
+   counter variable. Since we're using counter in our test comparison, and I expect 
+   the counter value to be off from 3000, I think the test will fail.
+
+4. The outputs match. Running it several times shows that my thought was correct in
+   Q3, as each time the program terminates, counter is a different value. 
+   i
+5. YAY the test passes with the lock.
+
+6. It takes ~1s (1.108s) to run the test.
+
+7. The test passes when the lock and increment operations are within a local code block.
+
+8. This takes ~1s (1.109s) to run.
+
+9. I think what this tells us about critical sections is we only need to include the
+   items that will be operated on. Other threads are able to enter the function and
+   the for-loop, but preventing them from accessing the variable at the same time
+   is enough to prevent the race condition from occurring.
