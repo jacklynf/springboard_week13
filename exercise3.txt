@@ -1,0 +1,12 @@
+1. The first function locks a then b, and the second function locks b then a. If these
+   2 threads reach the first lock in their respective functions before the other
+   thread reaches the second lock in its respective function, then we will have created
+   deadlock.
+
+2. The program is unable to terminate.
+
+3. The program cannot terminate because both functions are waiting for the other
+   one to release the other lock (thread 1 is waiting for thread 2 to unlock b, and
+   thread 2 is waiting for thread 1 to unlock a).
+
+
