@@ -1,0 +1,36 @@
+1. I'm probably wrong here but I don't want to cheat by running the code first :(
+   In the Sunday session, what we saw in a similar program was the program tended
+   to output the threads in the order they were written in the code, however, it
+   wasn't always the case. So, here, we're creating 3 threads, each will call the
+   print_letter function, and then print a letter 100 times. If the computer
+   somehow didn't have any processes running, we might expect to see this happen 
+   in the order of the code (i.e. 100x a, then 100x b, then 100x c). But I suspect that
+   100 loops per thread will have a higher likelihood of getting interrupted by
+   another thread or another process, so we might see a, b, and c printed 
+   arbitrarily.
+
+2. It matched my expectations (yay!). 
+
+3. Running the program a few more times shows that the output is different every 
+   time. I believe this is happening because the threads may be getting interrupted
+   by other processes on the CPU. When that happens, another thread is given priority.
+
+4. I believe at line A there are 4 threads. I know when we run c++ with main() that
+   main itself is a thread. Here, we don't have main, but I wonder if the TEST_CASE
+   operates in a similar way, therefore possibly counting as 1 thread.
+
+   Then the 3 threads created in the test case have not yet been join()-ed. Therefore,
+   they are likely still running at line A.
+
+5. A few messages were output here. "terminate called without an active exception",
+   "Abort (core dumped)", plus our test case failed. 
+
+6. This is because we didn't wait for one of the threads to finish executing before 
+   the program terminated. 
+
+7. The core files is what the program generated due to the program terminating
+   abnormally. The core file will contain the state of the program at the time of its
+   termination. 
+
+8. If the jumbled ordering of the letters doesn't matter, I don't see a problem with
+   this code.
