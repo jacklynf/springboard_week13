@@ -15,14 +15,15 @@
 
 4. The outputs match. Running it several times shows that my thought was correct in
    Q3, as each time the program terminates, counter is a different value. 
-   i
+
 5. YAY the test passes with the lock.
 
-6. It takes ~1s (1.108s) to run the test.
+6. It takes ~3s to run the test if the lock is before the sleep command. If after
+   sleep_for() and before counter, it takes ~1s.
 
 7. The test passes when the lock and increment operations are within a local code block.
 
-8. This takes ~1s (1.109s) to run.
+8. This takes ~1s to run.
 
 9. I think what this tells us about critical sections is we only need to include the
    items that will be operated on. Other threads are able to enter the function and

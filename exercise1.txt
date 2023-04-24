@@ -33,4 +33,5 @@
    termination. 
 
 8. If the jumbled ordering of the letters doesn't matter, I don't see a problem with
-   this code.
+   this code. // EDIT: following our Sunday session, I know now that writing to cout
+   is a problem. We should add a lock around the cout line.

@@ -9,10 +9,11 @@ using namespace std;
 
 void increment_counter (size_t & counter, std::mutex & counter_mutex, size_t num_times)
 {
+ 
   for (size_t idx=0; idx<num_times; ++idx) {
     this_thread::sleep_for(1ms); // simluate a complicated calculation
     {
-      const std::lock_guard<std::mutex> lock(counter_mutex);
+      lock_guard lock(counter_mutex); 
       counter++;
     }
   }
